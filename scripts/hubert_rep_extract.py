@@ -17,17 +17,19 @@ if __name__ == '__main__':
     parser.add_argument('--rep_dir', type=str, help='Path to save representation files')
     parser.add_argument('--exts', type=str, help="Audio file extensions, splitting with ','", default='flac')
     parser.add_argument('--split_seed', type=int, help="Random seed", default=0)
-    parser.add_argument('--valid_set_size', type=float, default=1000)
+    parser.add_argument('--valid_set_size', type=float, default=2000)
     args = parser.parse_args()
     exts = args.exts.split(',')
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     with open(args.config) as f:
         cfg = json.load(f)
     sample_rate = cfg.get('sample_rate')
+    # raise SystemError(cfg.get('semantic_model_path'))
     feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(cfg.get('semantic_model_path'))
     model = HubertModel.from_pretrained(cfg.get('semantic_model_path')).eval().to(device)
     target_layer = cfg.get('semantic_model_layer')
     path = Path(args.audio_dir)
+    
     file_list = [str(file) for ext in exts for file in path.glob(f'**/*.{ext}')]
     if args.valid_set_size != 0 and args.valid_set_size < 1:
         valid_set_size = int(len(file_list) * args.valid_set_size)

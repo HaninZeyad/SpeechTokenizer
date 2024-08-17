@@ -13,8 +13,11 @@ import typing as tp
 import torch
 from torch import nn
 
+#from .core_vq_linear3 import ResidualVectorQuantization
+#from .core_vq_normalize_rotate import ResidualVectorQuantization
+#from .core_vq_normalize import ResidualVectorQuantization
+#from .core_vq_linear2 import ResidualVectorQuantization
 from .core_vq import ResidualVectorQuantization
-
 
 @dataclass
 class QuantizedResult:

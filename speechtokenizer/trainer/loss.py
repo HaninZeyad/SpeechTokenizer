@@ -85,6 +85,7 @@ def adversarial_loss(disc_outputs):
 
 def d_axis_distill_loss(feature, target_feature):
     n = min(feature.size(1), target_feature.size(1))
+    # raise SystemError(f"n is {n} ; feature shape: {feature[:,:n].shape}; target feature shape: {target_feature[:, :n].shape}")
     distill_loss = - torch.log(torch.sigmoid(torch.nn.functional.cosine_similarity(feature[:, :n], target_feature[:, :n], axis=1))).mean()
     return distill_loss
 

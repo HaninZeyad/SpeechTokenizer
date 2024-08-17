@@ -1,0 +1,9 @@
+einops
+torch
+beartype
+torchaudio
+lion_pytorch
+tensorboard
+matplotlib
+accelerate
+soundfile

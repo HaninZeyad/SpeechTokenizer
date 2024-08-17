@@ -1,3 +1,9 @@
+# The code snippet you provided is importing modules and classes from the `SpeechTokenizer` package.
+# Here's what each line is doing:
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# from speechtokenizer import SpeechTokenizer, SpeechTokenizerTrainer
 from speechtokenizer import SpeechTokenizer, SpeechTokenizerTrainer
 from speechtokenizer.discriminators import MultiPeriodDiscriminator, MultiScaleDiscriminator, MultiScaleSTFTDiscriminator
 import json
@@ -22,5 +28,6 @@ if __name__ == '__main__':
 
     if args.continue_train:
         trainer.continue_train()
+       
     else:
         trainer.train()

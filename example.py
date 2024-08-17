@@ -1,6 +1,10 @@
 import argparse
 import torchaudio
 import torch
+import sys
+sys.path.append('/ocean/projects/cis220031p/hatwany/SpeechTokenizer')
+from speechtokenizer import SpeechTokenizer, SpeechTokenizerTrainer
+
 from speechtokenizer import SpeechTokenizer
 from scipy.io.wavfile import write
 import numpy as np

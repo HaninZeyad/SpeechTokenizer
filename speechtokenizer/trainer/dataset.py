@@ -54,9 +54,14 @@ class audioDataset(Dataset):
         audio_file, feature_file = file.split('\t')
         audio, sr = torchaudio.load(audio_file)
         feature = torch.from_numpy(np.load(feature_file))
+        # the npy file shape is 1 x seq_len x embed_size
+        feature = feature.squeeze()
+        # the default shape is seq_len x embed_size
         audio = audio.mean(axis=0)
+        
         if sr != self.sample_rate:
             audio = torchaudio.functional.resample(audio, sr, self.sample_rate)
+        
         if audio.size(-1) > self.segment_size:
             if self.valid:
                 return audio[:self.segment_size], feature[:self.segment_size // self.downsample_rate]
@@ -68,4 +73,5 @@ class audioDataset(Dataset):
         else:
             if not self.valid:
                 audio = torch.nn.functional.pad(audio, (0, self.segment_size - audio.size(-1)), 'constant')
+
         return audio, feature

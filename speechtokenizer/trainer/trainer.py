@@ -14,7 +14,12 @@ from .optimizer import get_optimizer
 from torch.utils import tensorboard
 from .loss import *
 import json
-from speechtokenizer import SpeechTokenizer
+import sys
+sys.path.append('/ocean/projects/cis220031p/hatwany/SpeechTokenizer')
+# from speechtokenizer import SpeechTokenizer, SpeechTokenizerTrainer
+
+# from speechtokenizer import SpeechTokenizer
+from ..model import SpeechTokenizer
 import time
 from tqdm import tqdm
 from accelerate import Accelerator, DistributedType, DistributedDataParallelKwargs, DataLoaderConfiguration
@@ -320,7 +325,6 @@ class SpeechTokenizerTrainer(nn.Module):
                 print(f'Epoch:{epoch} start...')
                     
             for batch in self.dl:
-                
                 tic = time.time()
                 
                 x, semantic_feature = batch

@@ -1,9 +1,9 @@
 CONFIG="config/spt_base_cfg.json"
-AUDIO_DIR="/remote-home/share/data/SpeechPretrain/LibriSpeech/LibriSpeech"
-REP_DIR="/remote-home/share/data/SpeechPretrain/hubert_rep/LibriSpeech"
+AUDIO_DIR="/ocean/projects/cis220031p/sbaek/sbaek_temp/LibriSpeech"
+REP_DIR="/ocean/projects/cis220031p/hatwany/SpeechTokenizer/hubert_base/LibriSpeech"
 EXTS="flac"
 SPLIT_SEED=0
-VALID_SET_SIZE=1500
+VALID_SET_SIZE=2000
 
 
 
